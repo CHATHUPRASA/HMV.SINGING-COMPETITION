@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School Singing Competition Voting</title>
+    <style>
+        /* Add your CSS styles for the voting app here */
+        .competitor {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>School Singing Competition Voting</h1>
+
+    <div id="competitors">
+        <!-- Loop through competitors and display photos, names, and like buttons -->
+        <div class="competitor" id="competitor1">
+            <img src="competitor1.jpg" alt="Competitor 1">
+            <h2>Competitor 1</h2>
+            <button onclick="vote('Competitor 1')">Like</button>
+            <p>Votes: <span id="votes1">0</span></p>
+        </div>
+
+        <!-- Repeat the above competitor div for all 15 competitors -->
+
+    </div>
+
+    <script>
+        // JavaScript to handle the voting process and count votes (in-memory, without server-side storage)
+        const votes = {};
+
+        function vote(competitorName) {
+            if (votes[competitorName] === undefined) {
+                votes[competitorName] = 1;
+            } else {
+                votes[competitorName]++;
+            }
+            // Update the like button text to show the number of likes
+            updateLikes(competitorName);
+        }
+
+        function updateLikes(competitorName) {
+            const likesCount = votes[competitorName];
+            const votesElement = document.querySelector(`#votes${competitorName.charAt(competitorName.length - 1)}`);
+            if (votesElement) {
+                votesElement.textContent = likesCount;
+            }
+        }
+    </script>
+</body>
+</html>
